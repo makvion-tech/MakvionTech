@@ -1,14 +1,14 @@
 // Shared design tokens — import wherever needed to keep colors/spacing consistent
 export const theme = {
   colors: {
-    bgDark: "#0a1410",       // near-black background (matches reference darkest tone)
-    bgGreenDeep: "#0e2318",  // deep forest green gradient base
-    bgGreenGlow: "#173a28",  // slightly lighter green for gradient highlight/glow
-    cardDark: "#12201a",     // service card background
+    bgDark: "#07120B",
+    bgGreenDeep: "#0B1E14",
+    bgGreenGlow: "#10331E",
+    cardDark: "#101A14",
     white: "#ffffff",
-    textMuted: "#a9b8ae",    // secondary/paragraph text
-    accent: "#3ecf7e",       // brighter mint-green accent, matches reference's "Product Designer" tone
-    divider: "#243830",
+    textMuted: "#A9B3AE",
+    accent: "#1DB954",
+    divider: "rgba(255,255,255,0.08)",
   },
   radius: {
     sm: "10px",

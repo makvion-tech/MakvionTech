@@ -4,21 +4,21 @@ import { FaGithub, FaLinkedinIn, FaTiktok } from "react-icons/fa";
 export default function Hero() {
   const statLabelStyle = {
     fontFamily: theme.font.body,
-    fontSize: "0.85rem",
+    fontSize: "0.9rem",
     color: theme.colors.textMuted,
-    marginTop: "0.2rem",
+    marginTop: "0.25rem",
   };
 
   const statNumberStyle = {
     fontFamily: theme.font.display,
-    fontSize: "1.8rem",
+    fontSize: "2rem",
     fontWeight: 700,
     color: theme.colors.white,
   };
 
   const socialIconStyle = {
-    width: "42px",
-    height: "42px",
+    width: "44px",
+    height: "44px",
     borderRadius: "50%",
     display: "flex",
     alignItems: "center",
@@ -29,29 +29,62 @@ export default function Hero() {
     fontSize: "0.9rem",
   };
 
+  const techBadgeStyle = {
+    width: "42px",
+    height: "42px",
+    borderRadius: "50%",
+    background: "rgba(16,26,20,0.85)",
+    border: `1px solid ${theme.colors.divider}`,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: "1.1rem",
+    boxShadow: `0 0 16px rgba(29,185,84,0.25)`,
+  };
+
   return (
     <section
       id="home"
-      className="hero-section"
+      className="hero-section hero-fade-in"
       style={{
-        background: `linear-gradient(135deg, ${theme.colors.bgGreenDeep} 0%, ${theme.colors.bgDark} 70%)`,
-        padding: "3rem 4.5rem 4rem",
+        position: "relative",
+        background: `linear-gradient(135deg, ${theme.colors.bgGreenDeep} 0%, ${theme.colors.bgDark} 75%)`,
+        padding: "5rem 4.5rem 6rem",
         display: "grid",
-        gridTemplateColumns: "1fr 1fr",
+        gridTemplateColumns: "1.1fr 1fr",
         alignItems: "center",
-        gap: "2rem",
+        gap: "3rem",
+        minHeight: "88vh",
+        overflow: "hidden",
       }}
     >
+      {/* Radial glow layer behind the image */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          right: "8%",
+          top: "50%",
+          transform: "translateY(-50%)",
+          width: "520px",
+          height: "520px",
+          borderRadius: "50%",
+          background: `radial-gradient(circle, ${theme.colors.bgGreenGlow} 0%, rgba(16,51,30,0) 70%)`,
+          filter: "blur(10px)",
+          pointerEvents: "none",
+        }}
+      />
+
       {/* Left column: intro copy */}
-      <div>
+      <div style={{ position: "relative", zIndex: 2 }}>
         <h1
           style={{
             fontFamily: theme.font.display,
-            fontSize: "3.2rem",
+            fontSize: "4.2rem",
             fontWeight: 700,
             color: theme.colors.white,
             margin: 0,
-            lineHeight: 1.1,
+            lineHeight: 1.05,
           }}
         >
           Hi! Makvion
@@ -61,16 +94,16 @@ export default function Hero() {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "0.6rem",
-            margin: "1rem 0 0.5rem",
+            gap: "0.7rem",
+            margin: "1.4rem 0 0.8rem",
           }}
         >
-          <span style={{ width: "24px", height: "1px", background: theme.colors.accent }} />
+          <span style={{ width: "28px", height: "2px", background: theme.colors.accent }} />
           <span
             style={{
               fontFamily: theme.font.body,
               color: theme.colors.accent,
-              fontSize: "0.95rem",
+              fontSize: "1rem",
               fontWeight: 600,
             }}
           >
@@ -82,51 +115,26 @@ export default function Hero() {
           style={{
             fontFamily: theme.font.body,
             color: theme.colors.textMuted,
-            fontSize: "1rem",
-            lineHeight: 1.6,
-            maxWidth: "380px",
-            margin: "0 0 1.8rem",
+            fontSize: "1.05rem",
+            lineHeight: 1.8,
+            maxWidth: "420px",
+            margin: "0 0 2.4rem",
           }}
         >
           Building fast, reliable web apps end to end — from React
           interfaces to the APIs and databases behind them.
         </p>
 
-        <div style={{ display: "flex", gap: "1rem", marginBottom: "2rem" }}>
-          <a
-            href="#contact"
-            style={{
-              background: theme.colors.white,
-              color: theme.colors.bgDark,
-              padding: "0.8rem 1.8rem",
-              borderRadius: theme.radius.pill,
-              fontFamily: theme.font.body,
-              fontWeight: 600,
-              textDecoration: "none",
-              fontSize: "0.95rem",
-            }}
-          >
+        <div style={{ display: "flex", gap: "1.1rem", marginBottom: "2.6rem" }}>
+          <a href="#contact" className="btn-primary">
             Let's Talk ↗
           </a>
-          <a
-            href="/Favour-CV.pdf"
-            download
-            style={{
-              border: `1px solid ${theme.colors.divider}`,
-              color: theme.colors.white,
-              padding: "0.8rem 1.8rem",
-              borderRadius: theme.radius.pill,
-              fontFamily: theme.font.body,
-              fontWeight: 600,
-              textDecoration: "none",
-              fontSize: "0.95rem",
-            }}
-          >
+          <a href="/Favour-CV.pdf" download className="btn-secondary">
             Download CV ↓
           </a>
         </div>
 
-        <div style={{ display: "flex", alignItems: "center", gap: "0.8rem" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
           <span
             style={{
               fontFamily: theme.font.body,
@@ -136,7 +144,7 @@ export default function Hero() {
           >
             Find me on
           </span>
-          <div style={{ display: "flex", gap: "0.6rem" }}>
+          <div style={{ display: "flex", gap: "0.7rem" }}>
             <a href="https://github.com/makvion-tech" target="_blank" rel="noreferrer" className="social-icon" style={socialIconStyle}>
               <FaGithub size={20} />
             </a>
@@ -151,91 +159,46 @@ export default function Hero() {
       </div>
 
       {/* Right column: photo + stats */}
-      <div style={{ position: "relative", display: "flex", justifyContent: "center" }}>
+      <div
+        style={{
+          position: "relative",
+          zIndex: 2,
+          display: "flex",
+          justifyContent: "flex-end",
+          alignItems: "flex-end",
+          height: "100%",
+        }}
+      >
         <img
           src="/photo.png"
           alt="Makvion, Fullstack Web Developer"
-          className="hero-photo"
+          className="hero-photo hero-float"
           style={{
-            width: "340px",
-            height: "420px",
+            width: "380px",
+            height: "460px",
             objectFit: "contain",
-            filter: "drop-shadow(0 20px 30px rgba(0,0,0,0.4))",
+            filter: "drop-shadow(0 25px 40px rgba(0,0,0,0.45))",
+            marginBottom: "-2rem",
           }}
         />
 
-        {/* Tech stack badges — floating near bottom-right of photo */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: "30px",
-            right: "0px",
-            display: "flex",
-            gap: "0.5rem",
-          }}
-        >
-          <span
-            title="React"
-            style={{
-              width: "38px",
-              height: "38px",
-              borderRadius: "50%",
-              background: "#0f2e22",
-              border: `1px solid ${theme.colors.divider}`,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "1.1rem",
-              color: "#61dafb",
-            }}
-          >
-            ⚛
-          </span>
-          <span
-            title="Node.js"
-            style={{
-              width: "38px",
-              height: "38px",
-              borderRadius: "50%",
-              background: "#0f2e22",
-              border: `1px solid ${theme.colors.divider}`,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "1.1rem",
-              color: "#83cd29",
-            }}
-          >
-            ◆
-          </span>
-          <span
-            title="Deployed on Vercel"
-            style={{
-              width: "38px",
-              height: "38px",
-              borderRadius: "50%",
-              background: "#0f2e22",
-              border: `1px solid ${theme.colors.divider}`,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "1.1rem",
-              color: theme.colors.white,
-            }}
-          >
-            ▲
-          </span>
-        </div>
+        {/* Floating tech stack badges around the photo */}
+        <span title="React" style={{ ...techBadgeStyle, position: "absolute", bottom: "38%", left: "-10px", color: "#61dafb" }}>⚛</span>
+        <span title="Node.js" style={{ ...techBadgeStyle, position: "absolute", bottom: "20%", left: "10px", color: "#83cd29" }}>◆</span>
+        <span title="JavaScript" style={{ ...techBadgeStyle, position: "absolute", bottom: "6%", left: "-4px", color: "#f0db4f" }}>JS</span>
+        <span title="PostgreSQL" style={{ ...techBadgeStyle, position: "absolute", bottom: "40px", right: "70px", color: "#6ab2e7" }}>◘</span>
+        <span title="Express" style={{ ...techBadgeStyle, position: "absolute", bottom: "0px", right: "20px", color: theme.colors.white }}>Ex</span>
+        <span title="Git" style={{ ...techBadgeStyle, position: "absolute", bottom: "-10px", right: "110px", color: "#f34f29" }}>⑂</span>
 
         <div
           className="hero-stats"
           style={{
             position: "absolute",
-            right: "-10px",
-            top: "10px",
+            right: "-40px",
+            top: "0px",
             display: "flex",
             flexDirection: "column",
-            gap: "1.4rem",
+            gap: "2rem",
           }}
         >
           <div>

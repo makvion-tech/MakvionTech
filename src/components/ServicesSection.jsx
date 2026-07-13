@@ -26,7 +26,7 @@ export default function ServicesSection() {
     <section
       id="skills"
       style={{
-        padding: "3rem 3rem 4rem",
+        padding: "5rem 4.5rem 6rem",
         fontFamily: theme.font.body,
       }}
     >
@@ -59,10 +59,12 @@ export default function ServicesSection() {
         {services.map((service) => (
           <div
             key={service.title}
+            className="hover-card"
             style={{
               background: theme.colors.cardDark,
-              borderRadius: theme.radius.md,
-              padding: "1.8rem",
+              borderRadius: theme.radius.lg,
+              padding: "2.2rem",
+              border: `1px solid ${theme.colors.divider}`,
             }}
           >
             <div

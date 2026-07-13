@@ -1,9 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { theme } from "../theme";
 import { FaBars, FaTimes } from "react-icons/fa";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navLinkStyle = {
     color: theme.colors.white,
@@ -30,13 +37,20 @@ export default function Navbar() {
   return (
     <nav
       style={{
-        position: "relative",
+        position: "sticky",
+        top: 0,
+        zIndex: 100,
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        padding: "1.5rem 4.5rem",
+        padding: "1.8rem 4.5rem",
         fontFamily: theme.font.body,
-        background: `linear-gradient(135deg, ${theme.colors.bgGreenGlow} 0%, ${theme.colors.bgGreenDeep} 100%)`,
+        background: scrolled
+          ? "rgba(11, 30, 20, 0.7)"
+          : `linear-gradient(135deg, ${theme.colors.bgGreenGlow} 0%, ${theme.colors.bgGreenDeep} 100%)`,
+        backdropFilter: scrolled ? "blur(12px)" : "none",
+        borderBottom: scrolled ? `1px solid ${theme.colors.divider}` : "none",
+        transition: "background 0.3s ease, backdrop-filter 0.3s ease",
       }}
     >
       <div
@@ -51,8 +65,17 @@ export default function Navbar() {
         makvion<span style={{ color: theme.colors.accent }}>.</span>
       </div>
 
-      {/* Desktop links */}
-      <div className="navbar-links" style={{ display: "flex", gap: "2.2rem" }}>
+      {/* Desktop links — centered */}
+      <div
+        className="navbar-links"
+        style={{
+          display: "flex",
+          gap: "2.4rem",
+          position: "absolute",
+          left: "50%",
+          transform: "translateX(-50%)",
+        }}
+      >
         {links.map((link) => (
           <a key={link.href} href={link.href} style={navLinkStyle}>
             {link.label}
@@ -62,11 +85,11 @@ export default function Navbar() {
 
       <a
         href="#contact"
-        className="navbar-contact-btn"
+        className="navbar-contact-btn btn-primary"
         style={{
           background: theme.colors.white,
           color: theme.colors.bgDark,
-          padding: "0.65rem 1.6rem",
+          padding: "0.7rem 1.8rem",
           borderRadius: theme.radius.pill,
           fontFamily: theme.font.body,
           fontWeight: 600,

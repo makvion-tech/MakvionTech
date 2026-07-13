@@ -83,7 +83,7 @@ export default function ProjectsSection() {
     <section
       id="projects"
       style={{
-        padding: "4rem 3rem",
+        padding: "5rem 4.5rem 6rem",
         fontFamily: theme.font.body,
         position: "relative",
       }}
@@ -118,13 +118,14 @@ export default function ProjectsSection() {
           <button
             key={project.name}
             onClick={() => setSelected(project)}
+            className="hover-card"
             style={{
               textAlign: "left",
               cursor: "pointer",
-              border: "none",
+              border: `1px solid ${theme.colors.divider}`,
               padding: 0,
               background: theme.colors.cardDark,
-              borderRadius: theme.radius.md,
+              borderRadius: theme.radius.lg,
               overflow: "hidden",
               display: "block",
               fontFamily: "inherit",
