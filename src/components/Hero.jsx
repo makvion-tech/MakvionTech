@@ -54,7 +54,7 @@ export default function Hero() {
             lineHeight: 1.1,
           }}
         >
-          Hi! I'm Favour
+          Hi! Makvion
         </h1>
 
         <div
@@ -154,7 +154,7 @@ export default function Hero() {
       <div style={{ position: "relative", display: "flex", justifyContent: "center" }}>
         <img
           src="/photo.png"
-          alt="Favour, Fullstack Web Developer"
+          alt="Makvion, Fullstack Web Developer"
           className="hero-photo"
           style={{
             width: "340px",

@@ -25,7 +25,6 @@ export default function Navbar() {
     { href: "#about", label: "About" },
     { href: "#projects", label: "Projects" },
     { href: "#skills", label: "Skills" },
-    { href: "#blog", label: "Blog" },
   ];
 
   return (
@@ -49,7 +48,7 @@ export default function Navbar() {
           letterSpacing: "0.5px",
         }}
       >
-        Favour<span style={{ color: theme.colors.accent }}>.</span>
+        makvion<span style={{ color: theme.colors.accent }}>.</span>
       </div>
 
       {/* Desktop links */}

@@ -35,7 +35,7 @@ export default function Footer() {
           fontSize: "1.1rem",
         }}
       >
-        favour<span style={{ color: theme.colors.accent }}>.</span>
+        makvion<span style={{ color: theme.colors.accent }}>.</span>
       </div>
 
       <div style={{ display: "flex", gap: "0.8rem" }}>
@@ -51,7 +51,7 @@ export default function Footer() {
       </div>
 
       <div style={{ color: theme.colors.textMuted, fontSize: "0.85rem" }}>
-        © {new Date().getFullYear()} Favour. All rights reserved.
+        © {new Date().getFullYear()} Makvion. All rights reserved.
       </div>
     </footer>
   );
