@@ -49,7 +49,7 @@ export default function Hero() {
       style={{
         position: "relative",
         background: `linear-gradient(135deg, ${theme.colors.bgGreenDeep} 0%, ${theme.colors.bgDark} 75%)`,
-        padding: "5rem 4.5rem 6rem",
+        padding: "5rem 6.5rem 6rem",
         display: "grid",
         gridTemplateColumns: "1.1fr 1fr",
         alignItems: "center",
@@ -158,14 +158,15 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Right column: photo + stats */}
+      {/* Right column: photo centered, stats to the side */}
       <div
+        className="hero-right-col"
         style={{
           position: "relative",
           zIndex: 2,
           display: "flex",
-          justifyContent: "flex-end",
-          alignItems: "flex-end",
+          justifyContent: "center",
+          alignItems: "center",
           height: "100%",
         }}
       >
@@ -180,18 +181,17 @@ export default function Hero() {
               objectFit: "contain",
               filter: "drop-shadow(0 25px 40px rgba(0,0,0,0.45))",
               display: "block",
+              margin: "0 auto",
             }}
           />
 
-          {/* Floating tech stack badges — positioned relative to the photo itself */}
-          <span title="React" style={{ ...techBadgeStyle, position: "absolute", bottom: "150px", left: "-20px" }}>
-            <span style={{ color: "#61dafb" }}>⚛</span>
-          </span>
-          <span title="Node.js" style={{ ...techBadgeStyle, position: "absolute", bottom: "90px", left: "-35px", color: "#83cd29" }}>◆</span>
-          <span title="JavaScript" style={{ ...techBadgeStyle, position: "absolute", bottom: "30px", left: "-20px", color: "#f0db4f", fontSize: "0.8rem", fontWeight: 700 }}>JS</span>
-          <span title="PostgreSQL" style={{ ...techBadgeStyle, position: "absolute", bottom: "10px", right: "-15px", color: "#6ab2e7" }}>◘</span>
-          <span title="Express" style={{ ...techBadgeStyle, position: "absolute", bottom: "70px", right: "-30px", color: theme.colors.white, fontSize: "0.75rem", fontWeight: 700 }}>Ex</span>
-          <span title="Git" style={{ ...techBadgeStyle, position: "absolute", bottom: "130px", right: "-15px", color: "#f34f29" }}>⑂</span>
+          {/* Tech stack badges — static, positioned clear of the photo's edges */}
+          <span title="React" className="hero-badge" style={{ ...techBadgeStyle, position: "absolute", top: "10%", left: "-70px", color: "#61dafb" }}>⚛</span>
+          <span title="Node.js" className="hero-badge" style={{ ...techBadgeStyle, position: "absolute", top: "40%", left: "-90px", color: "#83cd29" }}>◆</span>
+          <span title="JavaScript" className="hero-badge" style={{ ...techBadgeStyle, position: "absolute", top: "70%", left: "-70px", color: "#f0db4f", fontSize: "0.8rem", fontWeight: 700 }}>JS</span>
+          <span title="PostgreSQL" className="hero-badge" style={{ ...techBadgeStyle, position: "absolute", top: "10%", right: "-70px", color: "#6ab2e7" }}>◘</span>
+          <span title="Express" className="hero-badge" style={{ ...techBadgeStyle, position: "absolute", top: "40%", right: "-90px", color: theme.colors.white, fontSize: "0.75rem", fontWeight: 700 }}>Ex</span>
+          <span title="Git" className="hero-badge" style={{ ...techBadgeStyle, position: "absolute", top: "70%", right: "-70px", color: "#f34f29" }}>⑂</span>
         </div>
 
         <div
