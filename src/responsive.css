@@ -21,10 +21,14 @@
 
   .hero-section {
     grid-template-columns: 1fr !important;
-    padding: 3rem 1.5rem !important;
+    padding: 2.5rem 1.5rem !important;
     min-height: auto !important;
     text-align: center;
-    gap: 2.5rem !important;
+    gap: 1.25rem !important;
+  }
+
+  .hero-heading {
+    font-size: 2.4rem !important;
   }
 
   .hero-section > div:first-child {
@@ -34,18 +38,33 @@
   .hero-right-col {
     flex-direction: column !important;
     justify-content: center !important;
+    margin-top: 0.5rem !important;
+  }
+
+  .hero-photo-wrap {
+    width: 220px !important;
   }
 
   .hero-photo {
-    width: 260px !important;
-    height: 320px !important;
+    width: 220px !important;
+    height: 270px !important;
     max-height: none !important;
     margin: 0 auto !important;
   }
 
-  /* Decorative floating badges get cluttered on small screens — hide them */
+  /* Scale badges down and pull them closer on mobile instead of hiding them */
   .hero-badge {
-    display: none !important;
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 0.8rem !important;
+  }
+
+  .hero-badge-left {
+    left: -34px !important;
+  }
+
+  .hero-badge-right {
+    right: -34px !important;
   }
 
   /* Stats collapse into a static horizontal row below the photo instead of floating beside it */
@@ -54,8 +73,8 @@
     flex-direction: row !important;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 1.5rem !important;
-    gap: 1.5rem !important;
+    margin-top: 1.25rem !important;
+    gap: 1.25rem !important;
   }
 }
 
