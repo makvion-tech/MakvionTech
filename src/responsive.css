@@ -10,7 +10,7 @@
   }
 
   .navbar-contact-btn {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -23,7 +23,7 @@
     grid-template-columns: 1fr !important;
     padding: 2.5rem 1.5rem !important;
     min-height: auto !important;
-    text-align: center;
+    text-align: left;
     gap: 1.25rem !important;
   }
 
@@ -32,7 +32,7 @@
   }
 
   .hero-section > div:first-child {
-    align-items: center;
+    align-items: flex-start;
   }
 
   .hero-right-col {
@@ -62,7 +62,7 @@
   .hero-cta-row {
     flex-wrap: wrap;
     gap: 0.8rem !important;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .btn-primary,
