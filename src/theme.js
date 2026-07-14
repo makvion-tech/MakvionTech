@@ -1,18 +1,14 @@
 // Shared design tokens — import wherever needed to keep colors/spacing consistent
 export const theme = {
   colors: {
-    bgDark: "#050806",
-    bgSecondary: "#08120D",
-    bgGreenDeep: "#0C1F15",
-    bgGreenGlow: "#123323",
-    cardDark: "#121614",
+    bgDark: "#07120B",
+    bgGreenDeep: "#0B1E14",
+    bgGreenGlow: "#10331E",
+    cardDark: "#101A14",
     white: "#ffffff",
-    textMuted: "#8B938F",
-    textSecondary: "#CFCFCF",
-    accent: "#19C37D",
-    accentHighlight: "#29E08E",
+    textMuted: "#A9B3AE",
+    accent: "#1DB954",
     divider: "rgba(255,255,255,0.08)",
-    dividerFaint: "rgba(255,255,255,0.05)",
   },
   radius: {
     sm: "10px",
