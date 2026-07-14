@@ -126,7 +126,7 @@ export default function Hero() {
           interfaces to the APIs and databases behind them.
         </p>
 
-        <div style={{ display: "flex", gap: "1.1rem", marginBottom: "2.6rem" }}>
+        <div className="hero-cta-row" style={{ display: "flex", gap: "1.1rem", marginBottom: "2.6rem" }}>
           <a href="#contact" className="btn-primary">
             Let's Talk ↗
           </a>
@@ -186,13 +186,22 @@ export default function Hero() {
             }}
           />
 
-          {/* Tech stack badges — tight cluster on each side, clear of the photo */}
-          <span title="React" className="hero-badge hero-badge-left" style={{ ...techBadgeStyle, position: "absolute", top: "22%", left: "-58px", color: "#61dafb" }}>⚛</span>
-          <span title="Node.js" className="hero-badge hero-badge-left" style={{ ...techBadgeStyle, position: "absolute", top: "40%", left: "-58px", color: "#83cd29" }}>◆</span>
-          <span title="JavaScript" className="hero-badge hero-badge-left" style={{ ...techBadgeStyle, position: "absolute", top: "58%", left: "-58px", color: "#f0db4f", fontSize: "0.8rem", fontWeight: 700 }}>JS</span>
-          <span title="PostgreSQL" className="hero-badge hero-badge-right" style={{ ...techBadgeStyle, position: "absolute", top: "22%", right: "-58px", color: "#6ab2e7" }}>◘</span>
-          <span title="Express" className="hero-badge hero-badge-right" style={{ ...techBadgeStyle, position: "absolute", top: "40%", right: "-58px", color: theme.colors.white, fontSize: "0.75rem", fontWeight: 700 }}>Ex</span>
-          <span title="Git" className="hero-badge hero-badge-right" style={{ ...techBadgeStyle, position: "absolute", top: "58%", right: "-58px", color: "#f34f29" }}>⑂</span>
+          {/* Tech stack row — simple horizontal row below the photo, same style as the social icons row */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: "0.7rem",
+              marginTop: "1.2rem",
+            }}
+          >
+            <span title="React" className="hero-badge" style={{ ...techBadgeStyle, color: "#61dafb" }}>⚛</span>
+            <span title="Node.js" className="hero-badge" style={{ ...techBadgeStyle, color: "#83cd29" }}>◆</span>
+            <span title="JavaScript" className="hero-badge" style={{ ...techBadgeStyle, color: "#f0db4f", fontSize: "0.8rem", fontWeight: 700 }}>JS</span>
+            <span title="PostgreSQL" className="hero-badge" style={{ ...techBadgeStyle, color: "#6ab2e7" }}>◘</span>
+            <span title="Express" className="hero-badge" style={{ ...techBadgeStyle, color: theme.colors.white, fontSize: "0.75rem", fontWeight: 700 }}>Ex</span>
+            <span title="Git" className="hero-badge" style={{ ...techBadgeStyle, color: "#f34f29" }}>⑂</span>
+          </div>
         </div>
 
         <div

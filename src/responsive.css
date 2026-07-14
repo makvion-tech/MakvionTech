@@ -52,19 +52,23 @@
     margin: 0 auto !important;
   }
 
-  /* Scale badges down and pull them closer on mobile instead of hiding them */
+  /* Badges are now a simple row below the photo — just scale them down on mobile */
   .hero-badge {
-    width: 30px !important;
-    height: 30px !important;
-    font-size: 0.8rem !important;
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 0.85rem !important;
   }
 
-  .hero-badge-left {
-    left: -34px !important;
+  .hero-cta-row {
+    flex-wrap: wrap;
+    gap: 0.8rem !important;
+    justify-content: center;
   }
 
-  .hero-badge-right {
-    right: -34px !important;
+  .btn-primary,
+  .btn-secondary {
+    padding: 0.75rem 1.5rem !important;
+    font-size: 0.9rem !important;
   }
 
   /* Stats collapse into a static horizontal row below the photo instead of floating beside it */
