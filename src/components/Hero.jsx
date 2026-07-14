@@ -2,18 +2,18 @@ import { theme } from "../theme";
 import { FaGithub, FaLinkedinIn, FaTiktok } from "react-icons/fa";
 
 export default function Hero() {
-  const statLabelStyle = {
-    fontFamily: theme.font.body,
-    fontSize: "0.9rem",
-    color: theme.colors.textMuted,
-    marginTop: "0.25rem",
-  };
-
   const statNumberStyle = {
     fontFamily: theme.font.display,
     fontSize: "2rem",
     fontWeight: 700,
     color: theme.colors.white,
+  };
+
+  const statLabelStyle = {
+    fontFamily: theme.font.body,
+    fontSize: "0.9rem",
+    color: theme.colors.textMuted,
+    marginTop: "0.25rem",
   };
 
   const socialIconStyle = {
@@ -23,23 +23,25 @@ export default function Hero() {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    background: "rgba(255,255,255,0.06)",
+    background: "rgba(255,255,255,0.05)",
+    border: `1px solid ${theme.colors.divider}`,
+    backdropFilter: "blur(6px)",
     color: theme.colors.white,
     textDecoration: "none",
-    fontSize: "0.9rem",
   };
 
   const techBadgeStyle = {
     width: "42px",
     height: "42px",
     borderRadius: "50%",
-    background: "rgba(16,26,20,0.85)",
+    background: "rgba(18,22,20,0.6)",
     border: `1px solid ${theme.colors.divider}`,
+    backdropFilter: "blur(6px)",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     fontSize: "1.1rem",
-    boxShadow: `0 0 16px rgba(29,185,84,0.25)`,
+    boxShadow: `0 0 18px rgba(25,195,125,0.25)`,
   };
 
   return (
@@ -48,40 +50,26 @@ export default function Hero() {
       className="hero-section hero-fade-in"
       style={{
         position: "relative",
-        background: `linear-gradient(135deg, ${theme.colors.bgGreenDeep} 0%, ${theme.colors.bgDark} 75%)`,
-        padding: "5rem 4.5rem 6rem",
+        background: `
+          radial-gradient(circle at 65% 30%, rgba(25,195,125,0.18), transparent 45%),
+          radial-gradient(circle at 50% 70%, rgba(18,51,35,0.35), transparent 60%),
+          linear-gradient(180deg, ${theme.colors.bgSecondary}, ${theme.colors.bgDark})
+        `,
+        padding: "3rem 4.5rem",
         display: "grid",
-        gridTemplateColumns: "1.1fr 1fr",
+        gridTemplateColumns: "1.2fr 1fr 0.45fr",
         alignItems: "center",
-        gap: "3rem",
-        minHeight: "88vh",
+        minHeight: "100vh",
         overflow: "hidden",
       }}
     >
-      {/* Radial glow layer behind the image */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          right: "8%",
-          top: "50%",
-          transform: "translateY(-50%)",
-          width: "520px",
-          height: "520px",
-          borderRadius: "50%",
-          background: `radial-gradient(circle, ${theme.colors.bgGreenGlow} 0%, rgba(16,51,30,0) 70%)`,
-          filter: "blur(10px)",
-          pointerEvents: "none",
-        }}
-      />
-
       {/* Left column: intro copy */}
       <div style={{ position: "relative", zIndex: 2 }}>
         <h1
           style={{
             fontFamily: theme.font.display,
-            fontSize: "4.2rem",
-            fontWeight: 700,
+            fontSize: "4.6rem",
+            fontWeight: 800,
             color: theme.colors.white,
             margin: 0,
             lineHeight: 1.05,
@@ -95,7 +83,7 @@ export default function Hero() {
             display: "flex",
             alignItems: "center",
             gap: "0.7rem",
-            margin: "1.4rem 0 0.8rem",
+            margin: "1.6rem 0 1rem",
           }}
         >
           <span style={{ width: "28px", height: "2px", background: theme.colors.accent }} />
@@ -114,18 +102,18 @@ export default function Hero() {
         <p
           style={{
             fontFamily: theme.font.body,
-            color: theme.colors.textMuted,
+            color: theme.colors.textSecondary,
             fontSize: "1.05rem",
-            lineHeight: 1.8,
+            lineHeight: 1.85,
             maxWidth: "420px",
-            margin: "0 0 2.4rem",
+            margin: "0 0 2.6rem",
           }}
         >
           Building fast, reliable web apps end to end — from React
           interfaces to the APIs and databases behind them.
         </p>
 
-        <div style={{ display: "flex", gap: "1.1rem", marginBottom: "2.6rem" }}>
+        <div style={{ display: "flex", gap: "1.1rem", marginBottom: "2.8rem" }}>
           <a href="#contact" className="btn-primary">
             Let's Talk ↗
           </a>
@@ -134,89 +122,94 @@ export default function Hero() {
           </a>
         </div>
 
-        <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-          <span
-            style={{
-              fontFamily: theme.font.body,
-              color: theme.colors.textMuted,
-              fontSize: "0.85rem",
-            }}
-          >
-            Find me on
-          </span>
-          <div style={{ display: "flex", gap: "0.7rem" }}>
-            <a href="https://github.com/makvion-tech" target="_blank" rel="noreferrer" className="social-icon" style={socialIconStyle}>
-              <FaGithub size={20} />
-            </a>
-            <a href="https://www.linkedin.com/in/chiamaka-george-b140623aa" target="_blank" rel="noreferrer" className="social-icon" style={socialIconStyle}>
-              <FaLinkedinIn size={20} />
-            </a>
-            <a href="https://www.tiktok.com/@makvion_tech" target="_blank" rel="noreferrer" className="social-icon" style={socialIconStyle}>
-              <FaTiktok size={20} />
-            </a>
-          </div>
+        <div style={{ display: "flex", gap: "0.9rem" }}>
+          <a href="https://github.com/makvion-tech" target="_blank" rel="noreferrer" className="social-icon" style={socialIconStyle}>
+            <FaGithub size={20} />
+          </a>
+          <a href="https://www.linkedin.com/in/chiamaka-george-b140623aa" target="_blank" rel="noreferrer" className="social-icon" style={socialIconStyle}>
+            <FaLinkedinIn size={20} />
+          </a>
+          <a href="https://www.tiktok.com/@makvion_tech" target="_blank" rel="noreferrer" className="social-icon" style={socialIconStyle}>
+            <FaTiktok size={20} />
+          </a>
         </div>
       </div>
 
-      {/* Right column: photo + stats */}
+      {/* Center column: portrait, centered horizontally, bottom-aligned */}
       <div
         style={{
           position: "relative",
           zIndex: 2,
-          display: "flex",
-          justifyContent: "flex-end",
-          alignItems: "flex-end",
           height: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "flex-end",
         }}
       >
-        <div style={{ position: "relative", width: "380px", flexShrink: 0 }}>
+        {/* Soft glow behind the portrait */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            left: "50%",
+            bottom: "10%",
+            transform: "translateX(-50%)",
+            width: "420px",
+            height: "420px",
+            borderRadius: "50%",
+            background: `radial-gradient(circle, ${theme.colors.bgGreenGlow} 0%, rgba(18,51,35,0) 70%)`,
+            filter: "blur(20px)",
+            pointerEvents: "none",
+          }}
+        />
+
+        <div style={{ position: "relative", width: "min(40vw, 420px)" }}>
           <img
             src="/photo.png"
             alt="Makvion, Fullstack Web Developer"
             className="hero-photo hero-float"
             style={{
-              width: "380px",
-              height: "460px",
+              width: "100%",
+              height: "80vh",
+              maxHeight: "640px",
               objectFit: "contain",
-              filter: "drop-shadow(0 25px 40px rgba(0,0,0,0.45))",
+              objectPosition: "bottom",
+              filter: "drop-shadow(0 30px 45px rgba(0,0,0,0.5))",
               display: "block",
             }}
           />
 
-          {/* Floating tech stack badges — positioned relative to the photo itself */}
-          <span title="React" style={{ ...techBadgeStyle, position: "absolute", bottom: "150px", left: "-20px" }}>
-            <span style={{ color: "#61dafb" }}>⚛</span>
-          </span>
-          <span title="Node.js" style={{ ...techBadgeStyle, position: "absolute", bottom: "90px", left: "-35px", color: "#83cd29" }}>◆</span>
-          <span title="JavaScript" style={{ ...techBadgeStyle, position: "absolute", bottom: "30px", left: "-20px", color: "#f0db4f", fontSize: "0.8rem", fontWeight: 700 }}>JS</span>
-          <span title="PostgreSQL" style={{ ...techBadgeStyle, position: "absolute", bottom: "10px", right: "-15px", color: "#6ab2e7" }}>◘</span>
-          <span title="Express" style={{ ...techBadgeStyle, position: "absolute", bottom: "70px", right: "-30px", color: theme.colors.white, fontSize: "0.75rem", fontWeight: 700 }}>Ex</span>
-          <span title="Git" style={{ ...techBadgeStyle, position: "absolute", bottom: "130px", right: "-15px", color: "#f34f29" }}>⑂</span>
+          {/* Floating tech badges anchored to the portrait */}
+          <span title="React" style={{ ...techBadgeStyle, position: "absolute", bottom: "60%", left: "-25px", color: "#61dafb" }} className="hero-tech-float">⚛</span>
+          <span title="Node.js" style={{ ...techBadgeStyle, position: "absolute", bottom: "42%", left: "-45px", color: "#83cd29" }} className="hero-tech-float">◆</span>
+          <span title="JavaScript" style={{ ...techBadgeStyle, position: "absolute", bottom: "22%", left: "-30px", color: "#f0db4f", fontSize: "0.8rem", fontWeight: 700 }} className="hero-tech-float">JS</span>
+          <span title="Express" style={{ ...techBadgeStyle, position: "absolute", bottom: "55%", right: "-35px", color: theme.colors.white, fontSize: "0.75rem", fontWeight: 700 }} className="hero-tech-float">Ex</span>
+          <span title="PostgreSQL" style={{ ...techBadgeStyle, position: "absolute", bottom: "32%", right: "-48px", color: "#6ab2e7" }} className="hero-tech-float">◘</span>
+          <span title="Git" style={{ ...techBadgeStyle, position: "absolute", bottom: "12%", right: "-25px", color: "#f34f29" }} className="hero-tech-float">⑂</span>
         </div>
+      </div>
 
-        <div
-          className="hero-stats"
-          style={{
-            position: "absolute",
-            right: "-40px",
-            top: "0px",
-            display: "flex",
-            flexDirection: "column",
-            gap: "2rem",
-          }}
-        >
-          <div>
-            <div style={statNumberStyle}>1.5+</div>
-            <div style={statLabelStyle}>Years of experience</div>
-          </div>
-          <div>
-            <div style={statNumberStyle}>5+</div>
-            <div style={statLabelStyle}>Projects delivered</div>
-          </div>
-          <div>
-            <div style={statNumberStyle}>5+</div>
-            <div style={statLabelStyle}>Projects shipped</div>
-          </div>
+      {/* Right column: statistics */}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 2,
+          display: "flex",
+          flexDirection: "column",
+          gap: "3rem",
+        }}
+      >
+        <div>
+          <div style={statNumberStyle}>1.5+</div>
+          <div style={statLabelStyle}>Years of experience</div>
+        </div>
+        <div>
+          <div style={statNumberStyle}>5+</div>
+          <div style={statLabelStyle}>Projects delivered</div>
+        </div>
+        <div>
+          <div style={statNumberStyle}>5+</div>
+          <div style={statLabelStyle}>Projects shipped</div>
         </div>
       </div>
     </section>

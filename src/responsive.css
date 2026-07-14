@@ -18,20 +18,14 @@
   .hero-section {
     grid-template-columns: 1fr !important;
     padding: 2rem 1.5rem !important;
-  }
-
-  .hero-stats {
-    position: static !important;
-    flex-direction: row !important;
-    flex-wrap: wrap;
-    margin-top: 1.5rem !important;
-    gap: 1.5rem !important;
+    min-height: auto !important;
+    text-align: center;
+    gap: 2rem;
   }
 
   .hero-photo {
-    width: 100% !important;
-    max-width: 300px;
     height: 360px !important;
+    max-height: none !important;
   }
 }
 
@@ -49,30 +43,51 @@
 }
 
 .social-icon {
-  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .social-icon:hover {
-  transform: translateY(-4px) scale(1.12);
+  transform: translateY(-4px) scale(1.12) rotate(-6deg);
+  box-shadow: 0 0 20px rgba(25, 195, 125, 0.45);
+  background: rgba(25, 195, 125, 0.12);
 }
+
+@keyframes techFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.hero-tech-float {
+  animation: techFloat 4s ease-in-out infinite;
+}
+
+.hero-tech-float:nth-of-type(2) { animation-delay: 0.6s; }
+.hero-tech-float:nth-of-type(3) { animation-delay: 1.2s; }
+.hero-tech-float:nth-of-type(4) { animation-delay: 1.8s; }
+.hero-tech-float:nth-of-type(5) { animation-delay: 0.3s; }
+.hero-tech-float:nth-of-type(6) { animation-delay: 0.9s; }
 
 /* Buttons */
 .btn-primary {
   display: inline-block;
   background: #ffffff;
-  color: #07120B;
-  padding: 0.85rem 1.9rem;
+  color: #050806;
+  padding: 0.9rem 2rem;
   border-radius: 999px;
   font-weight: 600;
   font-size: 0.95rem;
   text-decoration: none;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.4);
 }
 
 .btn-secondary {
@@ -80,7 +95,7 @@
   background: transparent;
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 0.85rem 1.9rem;
+  padding: 0.9rem 2rem;
   border-radius: 999px;
   font-weight: 600;
   font-size: 0.95rem;
@@ -89,9 +104,9 @@
 }
 
 .btn-secondary:hover {
-  background: #1DB954;
-  border-color: #1DB954;
-  color: #07120B;
+  background: #19C37D;
+  border-color: #19C37D;
+  color: #050806;
   transform: translateY(-3px);
 }
 
