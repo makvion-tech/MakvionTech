@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { theme } from "../theme";
-import api from "../services/api"; // adjust filename below if it's not called api.js
+import api from "../services/api";
+import { socials } from "../data/projects";
 
 export default function ContactSection() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -23,159 +23,74 @@ export default function ContactSection() {
     }
   };
 
-  const inputStyle = {
-    width: "100%",
-    background: theme.colors.cardDark,
-    border: `1px solid ${theme.colors.divider}`,
-    borderRadius: theme.radius.sm,
-    padding: "0.85rem 1rem",
-    color: theme.colors.white,
-    fontFamily: theme.font.body,
-    fontSize: "0.95rem",
-    outline: "none",
-    boxSizing: "border-box",
-  };
-
   return (
-    <section
-      id="contact"
-      style={{
-        padding: "3rem 3rem 5rem",
-        fontFamily: theme.font.body,
-      }}
-    >
-      <div
-        style={{
-          background: `linear-gradient(135deg, ${theme.colors.bgGreenDeep} 0%, ${theme.colors.bgDark} 70%)`,
-          borderRadius: theme.radius.lg,
-          padding: "3rem",
-          maxWidth: "560px",
-          margin: "0 auto",
-          textAlign: "center",
-        }}
-      >
-        <h2
-          style={{
-            fontFamily: theme.font.display,
-            color: theme.colors.white,
-            fontSize: "2rem",
-            margin: "0 0 0.4rem",
-          }}
-        >
-          Let's talk
+    <section id="contact" className="split contact" aria-labelledby="contact-title">
+      <p className="split-lead" aria-hidden="true">
+        Let's build something.
+      </p>
+
+      <div className="split-body">
+        <h2 id="contact-title" className="panel-title">
+          Contact
         </h2>
-        <p
-          style={{
-            color: theme.colors.textMuted,
-            fontSize: "0.95rem",
-            margin: "0 0 2rem",
-          }}
-        >
-          Have a project in mind? I'd love to hear about it.
+        <p>
+          Have a project or a role in mind? Send a message below, or find me
+          on GitHub, LinkedIn or TikTok.
         </p>
 
-        <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.2rem" }}>
-          <div style={{ textAlign: "left" }}>
-            <label
-              htmlFor="name"
-              style={{
-                display: "block",
-                color: theme.colors.white,
-                fontSize: "0.85rem",
-                marginBottom: "0.4rem",
-              }}
-            >
-              Name
-            </label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              required
-              value={form.name}
-              onChange={handleChange}
-              placeholder="Your name"
-              style={inputStyle}
-            />
-          </div>
+        <form className="contact-form" onSubmit={handleSubmit}>
+          <label htmlFor="name">Name</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            autoComplete="name"
+            required
+            value={form.name}
+            onChange={handleChange}
+          />
 
-          <div style={{ textAlign: "left" }}>
-            <label
-              htmlFor="email"
-              style={{
-                display: "block",
-                color: theme.colors.white,
-                fontSize: "0.85rem",
-                marginBottom: "0.4rem",
-              }}
-            >
-              Email
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              value={form.email}
-              onChange={handleChange}
-              placeholder="Your email address"
-              style={inputStyle}
-            />
-          </div>
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autoComplete="email"
+            required
+            value={form.email}
+            onChange={handleChange}
+          />
 
-          <div style={{ textAlign: "left" }}>
-            <label
-              htmlFor="message"
-              style={{
-                display: "block",
-                color: theme.colors.white,
-                fontSize: "0.85rem",
-                marginBottom: "0.4rem",
-              }}
-            >
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              required
-              rows={4}
-              value={form.message}
-              onChange={handleChange}
-              placeholder="Type your message"
-              style={{ ...inputStyle, resize: "vertical" }}
-            />
-          </div>
+          <label htmlFor="message">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows={4}
+            required
+            value={form.message}
+            onChange={handleChange}
+          />
 
-          <button
-            type="submit"
-            disabled={status === "sending"}
-            style={{
-              background: theme.colors.white,
-              color: theme.colors.bgDark,
-              border: "none",
-              borderRadius: theme.radius.pill,
-              padding: "0.85rem 1.5rem",
-              fontWeight: 600,
-              fontSize: "0.95rem",
-              cursor: status === "sending" ? "not-allowed" : "pointer",
-              opacity: status === "sending" ? 0.7 : 1,
-            }}
-          >
-            {status === "sending" ? "Sending..." : "Send Message"}
+          <button type="submit" className="btn-solid" disabled={status === "sending"}>
+            {status === "sending" ? "Sending" : "Send message"}
           </button>
 
-          {status === "sent" && (
-            <p style={{ color: theme.colors.accent, fontSize: "0.9rem", margin: 0 }}>
-              Message sent — I'll get back to you soon.
-            </p>
-          )}
-          {status === "error" && (
-            <p style={{ color: "#e05c5c", fontSize: "0.9rem", margin: 0 }}>
-              Something went wrong. Please try again.
-            </p>
-          )}
+          <p className="form-status" role="status" data-state={status}>
+            {status === "sent" && "Message sent. I'll get back to you soon."}
+            {status === "error" &&
+              "The message didn't send. Check your connection and try again."}
+          </p>
         </form>
+
+        <ul className="social-links" aria-label="Elsewhere">
+          {socials.map((s) => (
+            <li key={s.label}>
+              <a className="text-link" href={s.href} target="_blank" rel="noreferrer">
+                {s.label}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
