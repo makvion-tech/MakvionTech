@@ -1,167 +1,90 @@
-import { useState, useEffect } from "react";
-import { theme } from "../theme";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { useEffect, useState } from "react";
+
+const links = [
+  { href: "#home", label: "Home" },
+  { href: "#work", label: "Work" },
+  { href: "#services", label: "Services" },
+  { href: "#skills", label: "Skills" },
+  { href: "#about", label: "About" },
+];
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const navLinkStyle = {
-    color: theme.colors.white,
-    textDecoration: "none",
-    fontFamily: theme.font.body,
-    fontSize: "0.95rem",
-    opacity: 0.85,
-  };
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
 
-  const mobileLinkStyle = {
-    ...navLinkStyle,
-    fontSize: "1.1rem",
-    padding: "0.9rem 0",
-    borderBottom: `1px solid ${theme.colors.divider}`,
-  };
-
-  const links = [
-    { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#projects", label: "Projects" },
-    { href: "#skills", label: "Skills" },
-  ];
+  const close = () => setOpen(false);
 
   return (
-    <nav
-      style={{
-        position: "sticky",
-        top: 0,
-        zIndex: 100,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "1.8rem 4.5rem",
-        fontFamily: theme.font.body,
-        background: scrolled
-          ? "rgba(11, 30, 20, 0.7)"
-          : `linear-gradient(135deg, ${theme.colors.bgGreenGlow} 0%, ${theme.colors.bgGreenDeep} 100%)`,
-        backdropFilter: scrolled ? "blur(12px)" : "none",
-        borderBottom: scrolled ? `1px solid ${theme.colors.divider}` : "none",
-        transition: "background 0.3s ease, backdrop-filter 0.3s ease",
-      }}
-    >
-      <div
-        style={{
-          fontFamily: theme.font.display,
-          fontWeight: 700,
-          fontSize: "1.3rem",
-          color: theme.colors.white,
-          letterSpacing: "0.5px",
-        }}
-      >
-        makvion<span style={{ color: theme.colors.accent }}>.</span>
-      </div>
+    <header className={`site-header${scrolled || open ? " is-solid" : ""}`}>
+      <div className="nav">
+        <a href="#home" className="wordmark" onClick={close}>
+          MakvionTech.
+        </a>
 
-      {/* Desktop links — centered */}
-      <div
-        className="navbar-links"
-        style={{
-          display: "flex",
-          gap: "2.4rem",
-          position: "absolute",
-          left: "50%",
-          transform: "translateX(-50%)",
-        }}
-      >
-        {links.map((link) => (
-          <a key={link.href} href={link.href} style={navLinkStyle}>
-            {link.label}
-          </a>
-        ))}
-      </div>
+        <nav aria-label="Primary" className="nav-links">
+          <ul>
+            {links.map((l) => (
+              <li key={l.href}>
+                <a href={l.href}>{l.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-      <a
-        href="#contact"
-        className="navbar-contact-btn btn-primary"
-        style={{
-          background: theme.colors.white,
-          color: theme.colors.bgDark,
-          padding: "0.7rem 1.8rem",
-          borderRadius: theme.radius.pill,
-          fontFamily: theme.font.body,
-          fontWeight: 600,
-          fontSize: "0.9rem",
-          textDecoration: "none",
-        }}
-      >
-        Contact
-      </a>
+        <a href="#contact" className="pill pill--solid nav-cta">
+          Contact
+        </a>
 
-      {/* Mobile hamburger toggle */}
-      <button
-        className="navbar-toggle"
-        onClick={() => setMenuOpen(!menuOpen)}
-        aria-label={menuOpen ? "Close menu" : "Open menu"}
-        style={{
-          display: "none",
-          background: "transparent",
-          border: "none",
-          color: theme.colors.white,
-          fontSize: "1.4rem",
-          cursor: "pointer",
-        }}
-      >
-        {menuOpen ? <FaTimes /> : <FaBars />}
-      </button>
-
-      {/* Mobile dropdown menu */}
-      {menuOpen && (
-        <div
-          className="navbar-mobile-menu"
-          style={{
-            position: "absolute",
-            top: "100%",
-            left: 0,
-            right: 0,
-            background: theme.colors.bgGreenDeep,
-            padding: "0.5rem 2rem 1.5rem",
-            display: "flex",
-            flexDirection: "column",
-            zIndex: 50,
-          }}
+        <button
+          type="button"
+          className="nav-toggle"
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          aria-label={open ? "Close menu" : "Open menu"}
+          onClick={() => setOpen(!open)}
         >
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              style={mobileLinkStyle}
-              onClick={() => setMenuOpen(false)}
-            >
-              {link.label}
-            </a>
-          ))}
-          <a
-            href="#contact"
-            onClick={() => setMenuOpen(false)}
-            style={{
-              background: theme.colors.white,
-              color: theme.colors.bgDark,
-              padding: "0.75rem 1.6rem",
-              borderRadius: theme.radius.pill,
-              fontWeight: 600,
-              fontSize: "0.95rem",
-              textDecoration: "none",
-              textAlign: "center",
-              marginTop: "1rem",
-            }}
-          >
-            Contact
-          </a>
-        </div>
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            {open ? (
+              <path d="M5 5l14 14M19 5L5 19" stroke="currentColor" strokeWidth="1.6" fill="none" />
+            ) : (
+              <path d="M3 8h18M3 16h18" stroke="currentColor" strokeWidth="1.6" fill="none" />
+            )}
+          </svg>
+        </button>
+      </div>
+
+      {open && (
+        <nav id="mobile-menu" aria-label="Mobile" className="mobile-menu">
+          <ul>
+            {links.map((l) => (
+              <li key={l.href}>
+                <a href={l.href} onClick={close}>
+                  {l.label}
+                </a>
+              </li>
+            ))}
+            <li>
+              <a href="#contact" className="pill pill--solid" onClick={close}>
+                Contact
+              </a>
+            </li>
+          </ul>
+        </nav>
       )}
-    </nav>
+    </header>
   );
 }

@@ -1,32 +1,8 @@
-// Left side of the editorial stage. The hero is one composition:
-// greeting, portrait, name, role and description are separate elements
-// positioned against each other in index.css (see "Hero" section there).
-const navLinks = [
-  { href: "#home", label: "Home" },
-  { href: "#work", label: "Work" },
-  { href: "#about", label: "About" },
-  { href: "#contact", label: "Contact" },
-];
-
+// Hero composition: greeting, portrait, name, role and description are
+// separate elements positioned against each other in index.css.
 export default function Hero() {
   return (
     <section id="home" className="hero" aria-label="Introduction">
-      <header className="site-header">
-        <a href="#home" className="wordmark">
-          MakvionTech
-        </a>
-        <span className="wordmark-rule" aria-hidden="true" />
-        <nav aria-label="Primary">
-          <ul className="nav-links">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a href={link.href}>{link.label}</a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </header>
-
       <div className="hero-art">
         <p className="hero-greeting">
           <span>Hey,</span>
@@ -36,7 +12,7 @@ export default function Hero() {
         {/* Independent, replaceable portrait asset: /public/photo.png */}
         <img
           className="hero-portrait"
-          src="/favour-portrait.png"
+          src="/photo.png"
           alt="Portrait of Chiamaka George Favour"
         />
 
