@@ -9,14 +9,11 @@ function App() {
   return (
     <>
       <main>
-        {/* One continuous composition: hero on the left, work + skills on the right */}
-        <div className="stage">
+        <div className="hero-wrap">
           <Hero />
-          <aside className="panel" aria-label="Work and skills">
-            <SelectedWork />
-            <ExperienceSkills />
-          </aside>
         </div>
+        <SelectedWork />
+        <ExperienceSkills />
         <AboutSection />
         <ContactSection />
       </main>

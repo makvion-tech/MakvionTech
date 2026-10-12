@@ -32,9 +32,8 @@ export default function SelectedWork() {
         Selected work
       </h2>
 
-      {/* Horizontally scrollable on wider screens so the next project peeks in,
-          as in the reference. Stacks vertically on phones. */}
-      <ul className="work-rail" tabIndex={0} aria-label="Selected projects">
+      {/* Asymmetric grid: the first project is featured large, the others sit beside it. */}
+      <ul className="work-grid">
         {projects.map((project) => (
           <li key={project.name} className="work-item">
             <Preview project={project} />

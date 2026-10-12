@@ -20,17 +20,17 @@ export default function ExperienceSkills() {
         Experience &amp; skills
       </h2>
 
-      <div className="skills-grid">
-        <div className="skills-col skills-stack">
+      <div className="skills-rows">
+        <div className="skills-row">
           <h3 className="skills-label">Tech stack</h3>
-          <ul className="skills-list skills-list--two">
+          <ul className="skills-list">
             {stack.map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
         </div>
 
-        <div className="skills-col skills-projects">
+        <div className="skills-row">
           <h3 className="skills-label">Projects</h3>
           <ul className="skills-list">
             {projects.map((p) => (
