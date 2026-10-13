@@ -108,7 +108,7 @@ button { font: inherit; color: inherit; }
   grid-template-columns: auto 1fr auto;
   align-items: center;
   height: var(--nav-h);
-  max-width: 90rem;
+  max-width: 76rem;
   margin-inline: auto;
   padding-inline: var(--gutter);
 }
@@ -455,6 +455,31 @@ button { font: inherit; color: inherit; }
 }
 
 /* =========================================================
+   Tablet hero (700–1099px): same composition as desktop — greeting
+   split around the face — with the role and description in a row below.
+   Phones (<700px) keep the stacked layout above.
+   ========================================================= */
+@media (min-width: 700px) and (max-width: 1099px) {
+  .hero { padding: 0.5rem var(--gutter) 3rem; }
+  .hero-art { width: 100%; max-width: 46rem; aspect-ratio: 1.45; }
+
+  .hero-greeting { top: 7cqw; left: 11cqw; right: 10cqw; font-size: 13cqw; letter-spacing: -0.025em; }
+  .hero-portrait {
+    left: 49cqw; height: 95%; max-width: 54cqw;
+    -webkit-mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
+  }
+  .hero-name { left: 3.4cqw; bottom: 4cqw; font-size: 11.4cqw; letter-spacing: -0.03em; }
+
+  .hero-copy {
+    max-width: 46rem; margin-top: 0.5rem; padding: 0 3.4%;
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem;
+  }
+  .hero-role { font-size: 3.2rem; }
+  .hero-desc { margin-top: 0.35rem; max-width: 24ch; font-size: 1rem; }
+}
+
+/* =========================================================
    Desktop hero — composition from the reference.
    A box with a fixed ratio, capped to the viewport height and
    centred, with the warm gradient filling the full width behind.
@@ -479,7 +504,7 @@ button { font: inherit; color: inherit; }
   }
   .hero-portrait {
     left: 49cqw;
-    height: 92%; max-width: 54cqw;
+    height: 95%; max-width: 54cqw;
     -webkit-mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
     mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
   }
