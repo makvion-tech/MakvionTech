@@ -23,7 +23,7 @@ export const projects = [
     description:
       "An academic-integrity and computer-based testing platform with anti-cheat proctoring.",
     image: "/projects/Scholarshield.png",
-    link: "https://scholar-shield-49r5-pi.vercel.app/",
+    link: "https://scholarshield-674e14.netlify.app",
     tags: ["React", "Express", "PostgreSQL", "Socket.io"],
   },
   {
