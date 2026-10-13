@@ -1,14 +1,20 @@
+import useTrimmedImage from "../hooks/useTrimmedImage";
+
 export default function AboutSection() {
+  const portrait = useTrimmedImage("/photo.png");
+
   return (
     <section id="about" className="section" aria-labelledby="about-title">
       <div className="container">
         <div className="about-card">
+          <div className="about-photo-wrap">
           <img
             className="about-photo"
-            src="/photo.png"
+            src={portrait.src}
+            data-ready={portrait.ready}
             alt="Chiamaka George Favour"
-            loading="lazy"
           />
+          </div>
           <div className="about-body">
             <h2 id="about-title" className="section-title section-title--left">About me</h2>
             <p>

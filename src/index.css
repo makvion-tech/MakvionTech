@@ -181,12 +181,13 @@ button { font: inherit; color: inherit; }
 }
 .hero-portrait {
   position: absolute; z-index: 1;
-  left: 0; bottom: 0;
-  width: 100cqw; height: auto; max-height: 96%;
+  left: 50%; bottom: 0;
+  transform: translateX(-50%);
+  height: 100%; width: auto; max-width: 104cqw;
   object-fit: contain; object-position: center bottom;
   /* the portrait melts into the page at the bottom, as in the reference */
-  -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 86%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 86%, transparent 100%);
 }
 .hero-name {
   position: absolute; z-index: 3;
@@ -204,6 +205,10 @@ button { font: inherit; color: inherit; }
 }
 .hero-desc { margin-top: 1.25rem; max-width: 34ch; font-size: 1rem; line-height: 1.5; }
 
+/* keep portraits hidden until trimmed, so they never jump size */
+.hero-portrait[data-ready="false"],
+.about-photo[data-ready="false"] { visibility: hidden; }
+
 /* =========================================================
    Selected work — two large rounded cards side by side
    ========================================================= */
@@ -212,9 +217,9 @@ button { font: inherit; color: inherit; }
   overflow: hidden;
   border-radius: var(--radius-card);
   background: var(--cream);
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 9;
 }
-.work-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.work-media img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform 0.5s ease; }
 .work-item:hover .work-media img { transform: scale(1.03); }
 
 .work-placeholder {
@@ -308,15 +313,22 @@ button { font: inherit; color: inherit; }
    ========================================================= */
 .about-card {
   display: grid;
+  max-width: 60rem;
+  margin-inline: auto;
   border-radius: 32px;
   overflow: hidden;
   background: linear-gradient(160deg, var(--cream) 0%, var(--peach) 100%);
 }
-.about-photo { width: 100%; max-height: 26rem; object-fit: contain; object-position: center bottom; align-self: end; }
+.about-photo-wrap { position: relative; height: 22rem; padding-top: 1.25rem; }
+.about-photo {
+  position: absolute; inset: 1.25rem 0 0 0;
+  width: 100%; height: calc(100% - 1.25rem);
+  object-fit: contain; object-position: center bottom;
+}
 .about-body { padding: 2rem 1.5rem 2.5rem; }
-.about-body p { margin-top: 1.1rem; max-width: 52ch; font-size: 0.9375rem; line-height: 1.65; }
+.about-body p { margin-top: 1rem; max-width: 46ch; font-size: 0.9375rem; line-height: 1.65; }
 .about-body .section-title { margin-bottom: 0.25rem; }
-.about-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
+.about-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
 
 /* =========================================================
    FAQ
@@ -404,18 +416,19 @@ button { font: inherit; color: inherit; }
   .hero-copy { padding-inline: 0; }
 
   .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .work-item:last-child:nth-child(odd) { grid-column: 1 / -1; }
-  .work-item:last-child:nth-child(odd) .work-media { aspect-ratio: 21 / 9; }
-  .work-meta { flex-direction: row; justify-content: space-between; align-items: flex-end; }
+  /* a lone last card sits centred under the pair, at the same size */
+  .work-item:last-child:nth-child(odd) {
+    grid-column: 1 / -1; justify-self: center; width: calc(50% - 0.875rem);
+  }
 
   .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .service { padding: 2rem 1.75rem 2.25rem; border-top: 0; border-left: 1px solid var(--hairline); }
 
   .skill-row { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 2.5rem; padding-block: 2.25rem; }
 
-  .about-card { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
-  .about-body { padding: 3.5rem 3rem; align-self: center; }
-  .about-photo { max-height: none; height: 100%; }
+  .about-card { grid-template-columns: minmax(0, 4fr) minmax(0, 6fr); min-height: 25rem; }
+  .about-photo-wrap { height: auto; }
+  .about-body { padding: 2.5rem 2.5rem 2.5rem 1.5rem; align-self: center; }
 
   .field-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .contact-form { padding: 2.25rem; }
@@ -430,6 +443,14 @@ button { font: inherit; color: inherit; }
 }
 
 @media (min-width: 1000px) {
+  /* three across, then two centred beneath */
+  .work-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 3rem 1.5rem; }
+  .work-item, .work-item:last-child:nth-child(odd) { grid-column: span 2; width: auto; justify-self: stretch; }
+  .work-item:nth-child(4) { grid-column: 2 / span 2; }
+  .work-item:nth-child(5) { grid-column: 4 / span 2; }
+  .work-name { font-size: 1.4rem; }
+  .work-desc { font-size: 0.875rem; }
+
   .services-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 
@@ -457,9 +478,10 @@ button { font: inherit; color: inherit; }
     letter-spacing: -0.025em;
   }
   .hero-portrait {
-    left: 27cqw; width: 52cqw; max-height: 100%;
-    -webkit-mask-image: linear-gradient(to bottom, #000 84%, transparent 100%);
-    mask-image: linear-gradient(to bottom, #000 84%, transparent 100%);
+    left: 53cqw;
+    height: 102%; max-width: 62cqw;
+    -webkit-mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
   }
   .hero-name {
     left: 3.4cqw; bottom: 5.5cqw;
@@ -476,5 +498,4 @@ button { font: inherit; color: inherit; }
     font-size: clamp(0.8125rem, 1.3cqw, 1.0625rem); line-height: 1.4;
   }
 
-  .about-photo { max-height: none; }
 }
