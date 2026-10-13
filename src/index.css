@@ -183,7 +183,7 @@ button { font: inherit; color: inherit; }
   position: absolute; z-index: 1;
   left: 50%; bottom: 0;
   transform: translateX(-50%);
-  height: 100%; width: auto; max-width: 104cqw;
+  height: 93%; width: auto; max-width: 100cqw;
   object-fit: contain; object-position: center bottom;
   /* the portrait melts into the page at the bottom, as in the reference */
   -webkit-mask-image: linear-gradient(to bottom, #000 86%, transparent 100%);
@@ -465,7 +465,7 @@ button { font: inherit; color: inherit; }
   .hero {
     container-type: inline-size;
     width: 100%;
-    max-width: min(100%, max(calc((100svh - var(--nav-h)) * 1.62), 62rem));
+    max-width: min(100%, max(calc((100svh - var(--nav-h)) * 1.62), 38rem));
     aspect-ratio: 1.62;
     padding: 0;
     margin-inline: auto;
@@ -473,13 +473,13 @@ button { font: inherit; color: inherit; }
   .hero-art, .hero-copy { display: contents; }
 
   .hero-greeting {
-    top: 5.6cqw; left: 21.5cqw; right: 18.5cqw;
-    font-size: 13.8cqw;
+    top: 7cqw; left: 11cqw; right: 10cqw;
+    font-size: 13cqw;
     letter-spacing: -0.025em;
   }
   .hero-portrait {
-    left: 53cqw;
-    height: 102%; max-width: 62cqw;
+    left: 49cqw;
+    height: 88%; max-width: 40cqw;
     -webkit-mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
     mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
   }

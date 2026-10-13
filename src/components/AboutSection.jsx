@@ -12,22 +12,24 @@ export default function AboutSection() {
             className="about-photo"
             src={portrait.src}
             data-ready={portrait.ready}
-            alt="Chiamaka George Favour"
+            alt="Chiamaka Favour George"
           />
           </div>
           <div className="about-body">
             <h2 id="about-title" className="section-title section-title--left">About me</h2>
             <p>
-              I'm Chiamaka George Favour, a full-stack web developer working
-              under the name MakvionTech. I like building applications that
-              are useful first: clear interfaces, sensible data models, and
-              backends that support them properly.
+              I'm Chiamaka Favour George, a full-stack developer behind
+              MakvionTech. I build web applications with a focus on what
+              matters most: solving real problems, creating clear user
+              experiences, and building systems that work reliably behind the
+              scenes.
             </p>
             <p>
-              I work across the stack, with HTML, CSS, JavaScript and React on
-              the front end and Node.js, Express.js, PostgreSQL and Prisma
-              behind it. Understanding both sides means the interface and the
-              system under it are designed together, not patched together.
+              I work across the stack, using React to build interfaces and
+              Node.js, Express, PostgreSQL, and Prisma to power the systems
+              behind them. I care about how the pieces fit together, from the
+              first interaction a user has with an interface to the data and
+              logic that make it work.
             </p>
             <div className="about-actions">
               <a className="pill pill--solid" href="#contact">Get in touch</a>

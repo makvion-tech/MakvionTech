@@ -71,7 +71,7 @@ export const socials = [
   { label: "GitHub", handle: "github.com/makvion-tech", href: "https://github.com/makvion-tech" },
   {
     label: "LinkedIn",
-    handle: "Chiamaka George",
+    handle: "Chiamaka Favour George",
     href: "https://www.linkedin.com/in/chiamaka-george-b140623aa",
   },
   { label: "TikTok", handle: "@makvion_tech", href: "https://www.tiktok.com/@makvion_tech" },

@@ -18,7 +18,7 @@ export default function Hero() {
           className="hero-portrait"
           src={portrait.src}
           data-ready={portrait.ready}
-          alt="Portrait of Chiamaka George Favour"
+          alt="Portrait of Chiamaka Favour George"
         />
 
         <h1 className="hero-name">

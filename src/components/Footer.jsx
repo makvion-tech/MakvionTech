@@ -15,7 +15,7 @@ export default function Footer() {
       <div className="container footer-grid">
         <div>
           <a href="#home" className="wordmark">MakvionTech.</a>
-          <p className="footer-note">Full-stack web development by Chiamaka George Favour.</p>
+          <p className="footer-note">Full-stack web development by Chiamaka Favour George.</p>
         </div>
 
         <nav aria-label="Footer">
