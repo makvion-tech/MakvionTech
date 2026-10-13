@@ -479,7 +479,7 @@ button { font: inherit; color: inherit; }
   }
   .hero-portrait {
     left: 49cqw;
-    height: 88%; max-width: 40cqw;
+    height: 92%; max-width: 54cqw;
     -webkit-mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
     mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
   }
@@ -494,7 +494,7 @@ button { font: inherit; color: inherit; }
   }
   .hero-desc {
     position: absolute; z-index: 3;
-    left: 79cqw; top: 28cqw; width: 17cqw; margin: 0;
+    left: 77cqw; top: 27cqw; width: 20cqw; margin: 0;
     font-size: clamp(0.8125rem, 1.3cqw, 1.0625rem); line-height: 1.4;
   }
 
