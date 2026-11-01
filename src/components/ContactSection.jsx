@@ -1,9 +1,14 @@
 import { useState } from "react";
-import { FaGithub, FaLinkedinIn, FaTiktok } from "react-icons/fa";
+import { FaGithub, FaLinkedinIn, FaTiktok, FaEnvelope } from "react-icons/fa";
 import api from "../services/api";
 import { socials } from "../data/projects";
 
-const icons = { GitHub: FaGithub, LinkedIn: FaLinkedinIn, TikTok: FaTiktok };
+const icons = {
+  GitHub: FaGithub,
+  LinkedIn: FaLinkedinIn,
+  TikTok: FaTiktok,
+  Email: FaEnvelope,
+};
 
 export default function ContactSection() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -15,6 +20,7 @@ export default function ContactSection() {
     e.preventDefault();
     setStatus("sending");
     try {
+      // The backend emails this to NOTIFY_EMAIL (makviontech@gmail.com).
       await api.post("/contact", form);
       setStatus("sent");
       setForm({ name: "", email: "", message: "" });
@@ -38,11 +44,15 @@ export default function ContactSection() {
           <ul className="channels">
             {socials.map((s) => {
               const Icon = icons[s.label];
+              const external = !s.href.startsWith("mailto:");
               return (
                 <li key={s.label}>
-                  <a href={s.href} target="_blank" rel="noreferrer">
+                  <a
+                    href={s.href}
+                    {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
+                  >
                     <span className="channel-icon" aria-hidden="true">
-                      <Icon size={16} />
+                      {Icon && <Icon size={16} />}
                     </span>
                     <span className="channel-text">
                       <strong>{s.label}</strong>
@@ -85,7 +95,8 @@ export default function ContactSection() {
 
           <p className="form-status" role="status" data-state={status}>
             {status === "sent" && "Message sent. Thank you, I'll get back to you soon."}
-            {status === "error" && "The message didn't send. Check your connection and try again."}
+            {status === "error" &&
+              "The message didn't send. Check your connection and try again, or email makviontech@gmail.com directly."}
           </p>
         </form>
       </div>

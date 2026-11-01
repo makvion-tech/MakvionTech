@@ -40,10 +40,29 @@ export default function SelectedWork() {
               <Media project={p} />
               <div className="work-meta">
                 <div>
+                  <p className="work-category">
+                    {p.category}
+                    {p.status && <span className="work-status">{p.status}</span>}
+                  </p>
                   <h3 className="work-name">{p.name}</h3>
-                  <p className="work-desc">{p.description}</p>
+                  <p className="work-desc">{p.details || p.description}</p>
+
+                  {p.features?.length > 0 && (
+                    <ul className="work-features" aria-label={`${p.name} key features`}>
+                      {p.features.map((f) => (
+                        <li key={f}>{f}</li>
+                      ))}
+                    </ul>
+                  )}
+
+                  {p.role && (
+                    <p className="work-role">
+                      <strong>Role:</strong> {p.role}
+                    </p>
+                  )}
+
                   <ul className="chips" aria-label={`${p.name} built with`}>
-                    {p.tags.map((t) => (
+                    {(p.stack || []).map((t) => (
                       <li key={t}>{t}</li>
                     ))}
                   </ul>

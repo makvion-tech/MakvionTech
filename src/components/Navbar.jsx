@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { CV_PATH, CV_FILENAME } from "../data/projects";
 
 const links = [
   { href: "#home", label: "Home" },
@@ -45,9 +46,18 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        <a href="#contact" className="pill pill--solid nav-cta">
-          Contact
-        </a>
+        <div className="nav-actions">
+          <a
+            href={CV_PATH}
+            download={CV_FILENAME}
+            className="pill pill--outline nav-cv"
+          >
+            Download CV
+          </a>
+          <a href="#contact" className="pill pill--solid nav-cta">
+            Contact
+          </a>
+        </div>
 
         <button
           type="button"
@@ -77,6 +87,16 @@ export default function Navbar() {
                 </a>
               </li>
             ))}
+            <li>
+              <a
+                href={CV_PATH}
+                download={CV_FILENAME}
+                className="pill pill--outline"
+                onClick={close}
+              >
+                Download CV
+              </a>
+            </li>
             <li>
               <a href="#contact" className="pill pill--solid" onClick={close}>
                 Contact
