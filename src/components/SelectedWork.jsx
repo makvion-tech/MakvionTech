@@ -62,7 +62,7 @@ export default function SelectedWork() {
                   )}
 
                   <ul className="chips" aria-label={`${p.name} built with`}>
-                    {(p.stack || []).map((t) => (
+                    {(p.tags || []).map((t) => (
                       <li key={t}>{t}</li>
                     ))}
                   </ul>
