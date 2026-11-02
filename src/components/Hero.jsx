@@ -1,10 +1,9 @@
 import useTrimmedImage from "../hooks/useTrimmedImage";
 
 // Hero composition: greeting, portrait, name, role and description are
+// Hero composition: greeting, name, role and description are
 // separate elements positioned against each other in index.css.
 export default function Hero() {
-  const portrait = useTrimmedImage("/photo.png");
-
   return (
     <section id="home" className="hero" aria-label="Introduction">
       <div className="hero-art">
@@ -13,17 +12,9 @@ export default function Hero() {
           <span>there.</span>
         </p>
 
-        {/* Independent, replaceable portrait asset: /public/photo.png */}
-        <img
-          className="hero-portrait"
-          src={portrait.src}
-          data-ready={portrait.ready}
-          alt="Portrait of Chiamaka Favour George"
-        />
-
         <h1 className="hero-name">
           <span>I am</span>
-          <span>Chiamaka</span>
+          <span>Makvion Tech</span>
         </h1>
       </div>
 
