@@ -1,4 +1,6 @@
-import photo from "../assets/photo.png"; // adjust the path to wherever photo.png lives
+// Photo lives in public/images/photo.png, so it is served from /images/photo.png
+// and needs no import.
+const PHOTO_SRC = "/images/photo.png";
 
 // Waveform bar heights (px), mirrored-ish so it reads like an audio clip
 const BARS = [
@@ -121,7 +123,7 @@ const styles = {
 export default function Hero() {
   return (
     <section id="home" style={styles.section} aria-label="Introduction">
-      <img src={photo} alt="" style={styles.photo} />
+      <img src={PHOTO_SRC} alt="" style={styles.photo} />
       <div style={styles.tint} aria-hidden="true" />
       <div style={styles.vignette} aria-hidden="true" />
 
