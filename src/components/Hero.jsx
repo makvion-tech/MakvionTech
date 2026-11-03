@@ -3,8 +3,8 @@ const PHOTO_SRC = "/images/photo.png";
 
 const STACK = ["PostgreSQL", "Express", "React", "Node.js"];
 
-// Photo height: fits fully inside the screen under the navbar, so nothing
-// needs scrolling. Change the 72svh / 4rem values to make it bigger or smaller.
+// Desktop photo height: fits fully inside the screen under the navbar, so
+// nothing needs scrolling. Change 72svh / 4rem to make it bigger or smaller.
 const PHOTO_H = "min(72svh, calc(100svh - var(--nav-h) - 4rem))";
 
 const styles = {
@@ -101,26 +101,27 @@ const styles = {
     color: "var(--ivory)",
     border: "1px solid rgba(255,252,246,0.45)",
   },
-  figure: {
-    margin: 0,
-    flex: "0 1 auto",
-    maxWidth: "100%",
-    display: "flex",
-    justifyContent: "center",
-  },
-  // whole photo shown, never cropped
-  photo: {
-    display: "block",
-    height: PHOTO_H,
-    width: "auto",
-    maxWidth: "100%",
-    objectFit: "contain",
-    borderRadius: "var(--radius-card)",
-    border: "1px solid rgba(255,224,184,0.28)",
-    boxShadow:
-      "0 30px 80px rgba(0,0,0,0.6), 0 0 120px rgba(255,224,184,0.12)",
-  },
 };
+
+// Photo sizing needs a media query, which inline styles can't do.
+//  - Phones / narrow: photo fills the full width, height follows the image,
+//    so there are no empty bars above or below it.
+//  - 900px and up: photo is sized by height so the whole hero fits the screen.
+const photoCss = `
+  .mk-figure { margin: 0; width: 100%; }
+  .mk-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-card);
+    border: 1px solid rgba(255,224,184,0.28);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 120px rgba(255,224,184,0.12);
+  }
+  @media (min-width: 900px) {
+    .mk-figure { width: auto; flex: 0 1 auto; max-width: 100%; }
+    .mk-photo { width: auto; height: ${PHOTO_H}; max-width: 100%; }
+  }
+`;
 
 export default function Hero() {
   return (
@@ -156,10 +157,16 @@ export default function Hero() {
           </div>
         </div>
 
-        <figure style={styles.figure}>
-          <img src={PHOTO_SRC} alt="Portrait of Makvion" style={styles.photo} />
+        <figure className="mk-figure">
+          <img
+            className="mk-photo"
+            src={PHOTO_SRC}
+            alt="Portrait of Makvion"
+          />
         </figure>
       </div>
+
+      <style>{photoCss}</style>
     </section>
   );
 }
