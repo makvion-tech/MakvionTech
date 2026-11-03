@@ -8,6 +8,7 @@ import AboutSection from "./components/AboutSection";
 import FaqSection from "./components/FaqSection";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <AboutSection />
         <FaqSection />
         <ContactSection />
+        <WhatsAppButton />
       </main>
       <Footer />
     </>

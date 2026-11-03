@@ -1,7 +1,14 @@
 import { useState } from "react";
-import { FaGithub, FaLinkedinIn, FaTiktok, FaEnvelope } from "react-icons/fa";
+import {
+  FaGithub,
+  FaLinkedinIn,
+  FaTiktok,
+  FaEnvelope,
+  FaWhatsapp,
+} from "react-icons/fa";
 import api from "../services/api";
 import { socials } from "../data/projects";
+import { whatsappLink } from "./WhatsAppButton";
 
 const icons = {
   GitHub: FaGithub,
@@ -65,6 +72,22 @@ export default function ContactSection() {
                 </li>
               );
             })}
+
+            {/* WhatsApp: added here so it doesn't depend on the socials data file */}
+            <li>
+              <a href={whatsappLink()} target="_blank" rel="noreferrer">
+                <span className="channel-icon" aria-hidden="true">
+                  <FaWhatsapp size={16} />
+                </span>
+                <span className="channel-text">
+                  <strong>WhatsApp</strong>
+                  <span>+234 707 843 1645</span>
+                </span>
+                <svg viewBox="0 0 16 10" width="16" height="10" aria-hidden="true">
+                  <path d="M0 5h14M10 1l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.3" />
+                </svg>
+              </a>
+            </li>
           </ul>
         </div>
 
