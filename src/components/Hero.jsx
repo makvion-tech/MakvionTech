@@ -1,12 +1,11 @@
-// Photo lives in public/images/photo.png, so it is served from /images/photo.png
-// and needs no import.
+// Photo lives in public/images/photo.png, served from /images/photo.png.
 const PHOTO_SRC = "/images/photo.png";
 
-// Waveform bar heights (px), mirrored-ish so it reads like an audio clip
-const BARS = [
-  10, 22, 32, 20, 44, 56, 36, 62, 48, 70, 38, 52, 60, 30, 44, 24,
-  14, 10, 16, 12, 28, 40, 58, 46, 68, 52, 36, 60, 56, 62,
-];
+const STACK = ["PostgreSQL", "Express", "React", "Node.js"];
+
+// Photo height: fits fully inside the screen under the navbar, so nothing
+// needs scrolling. Change the 72svh / 4rem values to make it bigger or smaller.
+const PHOTO_H = "min(72svh, calc(100svh - var(--nav-h) - 4rem))";
 
 const styles = {
   section: {
@@ -16,45 +15,32 @@ const styles = {
     minHeight: "calc(100svh - var(--nav-h))",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
-    background: "var(--ink)",
+    background: "#0b0907",
     color: "var(--ivory)",
   },
-  photo: {
-    position: "absolute",
-    inset: 0,
-    zIndex: -3,
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-    objectPosition: "center 18%",
-  },
-  // warm colour wash, replaces the indigo tint from the reference
-  tint: {
-    position: "absolute",
-    inset: 0,
-    zIndex: -2,
-    background:
-      "radial-gradient(ellipse 60% 70% at 8% 40%, rgba(255,224,184,0.38) 0%, rgba(255,224,184,0) 70%)," +
-      "linear-gradient(180deg, rgba(60,36,14,0.55) 0%, rgba(40,24,10,0.5) 45%, rgba(8,8,8,0.92) 100%)",
-    mixBlendMode: "normal",
-  },
-  vignette: {
+  // dark base with a soft warm glow behind the portrait so it pops
+  glow: {
     position: "absolute",
     inset: 0,
     zIndex: -1,
     background:
-      "radial-gradient(ellipse 80% 80% at 50% 45%, rgba(8,8,8,0) 40%, rgba(8,8,8,0.55) 100%)",
+      "radial-gradient(ellipse 42% 62% at 76% 50%, rgba(255,224,184,0.24) 0%, rgba(255,224,184,0) 70%)," +
+      "radial-gradient(ellipse 45% 55% at 6% 0%, rgba(255,224,184,0.08) 0%, rgba(255,224,184,0) 70%)",
   },
-  content: {
+  inner: {
     width: "100%",
-    maxWidth: "62rem",
+    maxWidth: "76rem",
     marginInline: "auto",
-    padding: "var(--section-y) var(--gutter)",
+    padding: "2rem var(--gutter)",
     display: "flex",
-    flexDirection: "column",
+    flexWrap: "wrap",
     alignItems: "center",
-    textAlign: "center",
+    justifyContent: "center",
+    gap: "2.5rem clamp(2rem, 5vw, 5rem)",
+  },
+  text: {
+    flex: "1 1 22rem",
+    maxWidth: "36rem",
   },
   eyebrow: {
     fontFamily: "var(--font-text)",
@@ -65,43 +51,40 @@ const styles = {
     color: "var(--peach)",
   },
   title: {
-    marginTop: "1.5rem",
+    marginTop: "1.25rem",
     fontFamily: "var(--font-display, var(--font-script))",
     fontStyle: "italic",
     fontWeight: 800,
-    fontSize: "clamp(2.6rem, 7.4vw, 5.6rem)",
-    lineHeight: 1.02,
+    fontSize: "clamp(2.3rem, 4.6vw, 4rem)",
+    lineHeight: 1.04,
     letterSpacing: "-0.02em",
     color: "var(--white)",
-    textShadow: "0 4px 40px rgba(8,8,8,0.55)",
     textWrap: "balance",
   },
   desc: {
-    marginTop: "1.5rem",
+    marginTop: "1.25rem",
     maxWidth: "40ch",
-    fontSize: "clamp(1rem, 1.6vw, 1.125rem)",
+    fontSize: "clamp(1rem, 1.4vw, 1.0625rem)",
     lineHeight: 1.6,
-    color: "rgba(255,252,246,0.88)",
+    color: "rgba(255,252,246,0.82)",
   },
-  wave: {
-    marginTop: "2.25rem",
-    height: "72px",
-    display: "flex",
-    alignItems: "center",
-    gap: "4px",
-  },
-  bar: {
-    width: "4px",
-    borderRadius: "2px",
-    background: "var(--peach)",
-    transformOrigin: "center",
-    animation: "mk-wave 1.4s ease-in-out infinite",
-  },
-  actions: {
-    marginTop: "2.5rem",
+  stack: {
     display: "flex",
     flexWrap: "wrap",
-    justifyContent: "center",
+    gap: "0.45rem",
+    marginTop: "1.5rem",
+  },
+  chip: {
+    fontSize: "0.75rem",
+    padding: "0.3rem 0.75rem",
+    borderRadius: "999px",
+    border: "1px solid rgba(255,224,184,0.3)",
+    color: "var(--peach)",
+  },
+  actions: {
+    marginTop: "2rem",
+    display: "flex",
+    flexWrap: "wrap",
     gap: "0.75rem",
   },
   primary: {
@@ -118,55 +101,65 @@ const styles = {
     color: "var(--ivory)",
     border: "1px solid rgba(255,252,246,0.45)",
   },
+  figure: {
+    margin: 0,
+    flex: "0 1 auto",
+    maxWidth: "100%",
+    display: "flex",
+    justifyContent: "center",
+  },
+  // whole photo shown, never cropped
+  photo: {
+    display: "block",
+    height: PHOTO_H,
+    width: "auto",
+    maxWidth: "100%",
+    objectFit: "contain",
+    borderRadius: "var(--radius-card)",
+    border: "1px solid rgba(255,224,184,0.28)",
+    boxShadow:
+      "0 30px 80px rgba(0,0,0,0.6), 0 0 120px rgba(255,224,184,0.12)",
+  },
 };
 
 export default function Hero() {
   return (
     <section id="home" style={styles.section} aria-label="Introduction">
-      <img src={PHOTO_SRC} alt="" style={styles.photo} />
-      <div style={styles.tint} aria-hidden="true" />
-      <div style={styles.vignette} aria-hidden="true" />
+      <div style={styles.glow} aria-hidden="true" />
 
-      <div style={styles.content}>
-        <p style={styles.eyebrow}>Full-stack Developer</p>
+      <div style={styles.inner}>
+        <div style={styles.text}>
+          <p style={styles.eyebrow}>Full-stack Developer</p>
 
-        <h1 style={styles.title}>Your ideas deserve better software.</h1>
+          <h1 style={styles.title}>Your ideas deserve better software.</h1>
 
-        <p style={styles.desc}>
-          I build thoughtful web experiences and practical applications, from
-          responsive interfaces to backend systems.
-        </p>
+          <p style={styles.desc}>
+            I build thoughtful web experiences and practical applications, from
+            responsive interfaces to backend systems.
+          </p>
 
-        <div style={styles.wave} aria-hidden="true">
-          {BARS.map((h, i) => (
-            <span
-              key={i}
-              style={{
-                ...styles.bar,
-                height: `${h}px`,
-                animationDelay: `${(i % 9) * 0.11}s`,
-              }}
-            />
-          ))}
+          <ul style={styles.stack} aria-label="Main stack">
+            {STACK.map((t) => (
+              <li key={t} style={styles.chip}>
+                {t}
+              </li>
+            ))}
+          </ul>
+
+          <div style={styles.actions}>
+            <a href="#work" className="pill" style={styles.primary}>
+              View My Work
+            </a>
+            <a href="#contact" className="pill" style={styles.secondary}>
+              Get in Touch
+            </a>
+          </div>
         </div>
 
-        <div style={styles.actions}>
-          <a href="#work" className="pill" style={styles.primary}>
-            View My Work
-          </a>
-          <a href="#contact" className="pill" style={styles.secondary}>
-            Get in Touch
-          </a>
-        </div>
+        <figure style={styles.figure}>
+          <img src={PHOTO_SRC} alt="Portrait of Makvion" style={styles.photo} />
+        </figure>
       </div>
-
-      {/* keyframes can't live in inline styles */}
-      <style>{`
-        @keyframes mk-wave {
-          0%, 100% { transform: scaleY(0.45); }
-          50%      { transform: scaleY(1); }
-        }
-      `}</style>
     </section>
   );
 }
